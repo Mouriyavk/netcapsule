@@ -3,8 +3,6 @@ from dataclasses import dataclass
 from datetime import datetime
 
 
-
-
 @dataclass(frozen=True, order=True)
 class Endpoint:
 	ip: str 
@@ -41,6 +39,8 @@ def build_flowKey(Packet: PacketInfo):
 	return Key
 
 flowTable = {} 
+
+
 def update_flowTable(Packet: PacketInfo):
 
 	flow_key = build_flowKey(Packet)
@@ -65,14 +65,15 @@ def update_flowTable(Packet: PacketInfo):
 
 
 		
-	
+
 for item in PacketInfo():
 	update_flowTable(item)
 
-def PacketDisplay(dict: flowTable):
+def PacketDisplay(flowTable: dict):
 	for key, value in flowTable.items():
 		print(f'key: {key}\n value: {value}')
 
 
 PacketDisplay(flowTable)
+
 
